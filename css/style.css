@@ -1,0 +1,92 @@
+#wishList {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+
+  .tooltip {
+    position: absolute;
+    bottom: -70px;
+    left: -100px;
+    padding: 5px 10px;
+    width: 200px;
+    font-size: 15px;
+    transform: translateX(-50%);
+    background: rgba(50, 50, 50, 0.8);
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -15px;
+      right: 10px;
+      width: 0;
+      height: 0;
+      border-left: 14px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 16px solid rgba(50, 50, 50, 0.8);
+    }
+  }
+
+  .fa-heart:hover + .tooltip {
+    opacity: 1;
+  }
+
+   .fa-heart{
+    font-size: 24px;
+   }
+
+
+}
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(216, 216, 216);
+    opacity: 0.7;
+    transition: all 0.3s;
+}
+
+.swiper-pagination-bullet-active {
+    width: 20px;
+    border-radius: 10px;
+    background-color: gray;
+    opacity: 1;
+}
+
+.choosedayBox {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+
+    h2 {
+        font-size: 30px;
+        font-weight: 100;
+    }
+
+    #chooseLang {
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+
+        a {
+            text-decoration: none;
+            color: black;
+            margin: 0 10px;
+            position: relative;
+            padding-bottom: 6px;
+            transition: 0.3s;
+
+            &:hover {
+                border-bottom: 3px solid gray;
+            }
+        }
+
+        a.active {
+            border-bottom: 3px solid red;
+        }
+    }
+}
