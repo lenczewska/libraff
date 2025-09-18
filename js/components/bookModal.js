@@ -1,14 +1,18 @@
-import getAllCategories from "../service/getAllCategories.js";
-import createNewBook from "./createNewBooks.js";
+import getAllCategories from "../service/getAllCategories.js"; 
+import createNewBook from "./createNewBooks.js"; 
 import editBook from "./editBook.js";
 import deleteBook from "./deleteBook.js";
 
+let formObj = {};
 
- async function openBookModal(mode = "create", book) {
-  resetFormObj();
+function setFormObj(obj) {
+  formObj = obj;
+  console.log("Form object updated:", formObj);
+}
 
+async function openBookModal(mode = "create", book) {
   const categData = await getAllCategories();
-  const categinKitabi = categData.find(d => d.title === "Kitab");ф
+  const categinKitabi = categData.find(d => d.title === "Kitab");
   const categories = categinKitabi ? categinKitabi.categories : [];
 
   const container = document.getElementById("dynamicModal");
@@ -42,7 +46,7 @@ import deleteBook from "./deleteBook.js";
               <input onchange="getValue(event)" type="number" name="pageCount" placeholder="Səhifə sayı" class="border p-2 rounded">
               <input onchange="getValue(event)" type="number" name="stockCount" placeholder="Stok sayı" class="border p-2 rounded">
             </div>
-            <button onclick="${mode}BookFunc(${book ? book.id : ''})" type="button" class="rounded-xl px-10 cursor-pointer py-2 bg-gradient-to-r from-[#CC0000] to-[#EF3340] text-white font-bold hover:from-red-700 hover:to-red-600 transition">${btnText}</button>
+            <button onclick="${mode}Book(${book ? book.id : ''})" type="button" class="rounded-xl px-10 cursor-pointer py-2 bg-gradient-to-r from-[#CC0000] to-[#EF3340] text-white font-bold hover:from-red-700 hover:to-red-600 transition">${btnText}</button>
           </form>
         </div>
       </div>
@@ -71,9 +75,7 @@ import deleteBook from "./deleteBook.js";
     form.genre.value = book.genre;
     form.author.value = book.author;
     form.publisher.value = book.publisher;
-    form.language.value = Array.isArray(book.language)
-      ? book.language.join(" ")
-      : (book.language || "");
+    form.language.value = Array.isArray(book.language) ? book.language.join(" ") : (book.language || "");
     form.description.value = book.description;
     form.pageCount.value = book.pageCount;
     form.stockCount.value = book.stockCount;
@@ -92,14 +94,9 @@ import deleteBook from "./deleteBook.js";
 
     setFormObj({
       ...book,
-      language: Array.isArray(book.language)
-        ? book.language
-        : book.language
-          ? [book.language]
-          : [],
+      language: Array.isArray(book.language) ? book.language : (book.language ? [book.language] : []),
       sale: book.price - (book.price * 0.2)
     });
-
   }
 };
 
@@ -107,6 +104,5 @@ document.openBookModal = openBookModal;
 document.editBook = editBook;
 document.createNewBook = createNewBook;
 document.deleteBook = deleteBook;
-
 
 export default openBookModal;
