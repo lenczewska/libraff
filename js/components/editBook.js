@@ -4,9 +4,11 @@ import loadBooks from "../utils/admin.js"
 import { getBookData } from "./bookFormData.js"
 
 async function editBook(id) {
-    const book = await getBookById(id);
+    console.log("Edit is called!");
+    const obj = await getBookById(id);
+    console.log("Obj:", obj);
 
-    if (!book) {
+    if (!obj) {
         Swal.fire({
             title: "Kitab tapılmadı!",
             icon: "info",
@@ -14,7 +16,6 @@ async function editBook(id) {
         });
         return;
     }
-    const obj = getBookData();
 
     if (
         !obj.book_name || !obj.book_img || !obj.price || !obj.genre || !obj.author ||
