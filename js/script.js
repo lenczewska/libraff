@@ -5,33 +5,7 @@ let data;
 
 
 
-function printAllBooks() {
-    books.innerHTML = "";
 
-    data.forEach(item => {
- const card = `
-<div class="w-[240px] p-[20px] hover:shadow-xl hover:shadow-gray-600 rounded-[20px] transition-all duration-300 group">
-  <div class="relative w-[200px] h-[250px] bg-gray-100 rounded-[20px] mb-[20px] overflow-hidden">
-    <img src="${item.image}" alt="${item.title}" class="w-full h-full object-center p-[20px]">
-    <div class="absolute top-2 right-2 text-gray-300  text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
-      <i class="fa-solid fa-heart hover:text-red-600 "></i>
-    </div>
-  </div>
-  <div>
-    <p class="mt-2 text-black font-bold w-full">${item.title}</p>
-    <div class="flex items-center gap-[10px]">
-      <p class="text-red-600 font-bold">${item.price} azn</p>
-      ${item.sale ? `<del class="text-gray-400 text-sm">${item.sale} azn</del>` : ""}
-    </div>
-  </div>
-</div>
-`;
-
-
-
-        books.innerHTML += card;
-    });
-}
 document.addEventListener("DOMContentLoaded", async () => {
   const langLinks = document.querySelectorAll("#chooseLang a");
   const booksContainer = document.getElementById("dayBooks");

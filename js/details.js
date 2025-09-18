@@ -2,6 +2,7 @@ import getBook from "../js/service/getEllementByID.js";
 import getDetailTemplate from "./components/detailsPageTemplate.js"
 import { addFavorite, removeFavorite, isFavorite } from "./utils/favoriteUtils.js";
 
+
 window.categPopUp = categPopUp;
 
 const query = location.search;

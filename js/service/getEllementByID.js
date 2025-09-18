@@ -1,11 +1,11 @@
-import apiFetch from "./fetch";
+import apiFetch from "./fetch.js";
 
- async function getBook(id, options = {}) {
+ async function getBookById(id, options = {}) {
 const BASE_URL = `https://lenczewska-libraff-az-data.onrender.com/books/${id}`;
 
     return await apiFetch(BASE_URL, options.method || "GET", options.body, options.headers || {});
 }
 
 
-export default getBook;
+export default getBookById;
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="icon" href="../img/icon (1).png" type="image/png">
+    <link rel="stylesheet" href="../dist/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+ <div class="m-auto w-[95%] py-12 flex flex-col gap-12 font-sans">
+  
+  <header class="flex justify-between items-center px-6 bg-gradient-to-r from-amber-900 to-yellow-800 rounded-2xl shadow-lg py-6">
+    <div>
+      <h1 class="text-4xl font-extrabold tracking-tight text-white drop-shadow-md">
+        <a href="../index.html" class="bg-gradient-to-r text-[42px] from-yellow-200 via-amber-100 to-white bg-clip-text text-transparent">
+          Admin Panel
+        </a>
+      </h1>
+      <p class="text-[16px] text-amber-100 mt-2 italic">
+        “Kitabların gücü sənin əlinin altında”  
+      </p>
+    </div>
+
+    <div id="dynamicModal"></div>
+
+    <button id="create-book"
+      class="rounded-xl px-6 py-3 text-white font-semibold shadow-lg bg-gradient-to-r from-yellow-600 to-amber-700 hover:from-yellow-700 hover:to-amber-800 transition-all duration-300 cursor-pointer">
+      <span class="inline-flex items-center gap-2">
+        <i class="fa-solid fa-plus"></i> Yeni kitab əlavə et
+      </span>
+    </button>
+  </header>
+
+  <section id="booksTable"
+    class="rounded-2xl border border-amber-200 bg-gradient-to-br from-amber-50 to-yellow-100 shadow-md overflow-hidden">
+  </section>
+</div>
+
+
+
+    <script type="module" src="../js/utils/admin.js"></script>
+</body>
+</html>

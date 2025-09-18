@@ -1,7 +1,9 @@
 import fetch from './fetch.js';
 
-const BASE_URL = `https://lenczewska-libraff-az-data.onrender.com/books/${id}`;
+const BASE_URL = `https://lenczewska-libraff-az-data.onrender.com/books/`;
 
-export default async function getAllCategs() {
+async function getAllCategories() {
     return await fetch(BASE_URL);
 }
+
+export default getAllCategories;
