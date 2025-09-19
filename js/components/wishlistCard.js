@@ -1,13 +1,13 @@
 import { addFavorite, removeFavorite, isFavorite } from '../utils/favUtils.js';
 
-function card(book) {
+function wishlistCard(book) {
   const isInWishlist = isFavorite(book.id);
   const wishlistClass = isInWishlist ? 'text-red-500' : 'text-gray-400 hover:text-red-500';
   
   return `
     <div class="w-[240px] p-[20px] hover:shadow-xl rounded-[20px] transition-all duration-300 group bg-white relative">
       <div class="relative w-[200px] h-[250px] mb-[20px] overflow-hidden rounded-lg bg-gray-100">
-        <a href="./pages/details.html?id=${book.id}" class="block w-full h-full">
+        <a href="./details.html?id=${book.id}" class="block w-full h-full">
           <img src="${book.book_img}" alt="${book.book_name}" class="w-full h-full object-cover p-[20px] hover:scale-105 transition-transform duration-300">
         </a>
         <button 
@@ -19,7 +19,7 @@ function card(book) {
           <i class="fa-heart ${isInWishlist ? 'fa-solid' : 'fa-regular'} text-sm"></i>
         </button>
       </div>
-      <a href="./pages/details.html?id=${book.id}" class="block hover:text-red-600 transition-colors duration-200">
+      <a href="./details.html?id=${book.id}" class="block hover:text-red-600 transition-colors duration-200">
         <p class="mt-2 text-black font-bold w-full">${book.book_name}</p>
         <p class="text-gray-700">${book.author}</p>
       </a>
@@ -54,5 +54,4 @@ window.toggleWishlist = function(btn, bookId) {
   updateWishlistCounter();
 };
 
-export default card;
-
+export default wishlistCard;

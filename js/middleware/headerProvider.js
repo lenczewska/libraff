@@ -1,7 +1,6 @@
 import getHeader from '../components/header.js';
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 1️⃣ Вставляем хедер в контейнер
   const headerContainer = document.getElementById('headerContainer');
   if (!headerContainer) {
     console.warn('Header container tapılmadı!');
@@ -9,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   headerContainer.innerHTML = getHeader();
 
-  // 2️⃣ Дропдаун "Hesabim"
   const openModalBtn = document.getElementById('openModal');
   const dropdown = document.getElementById('login-dropdown');
 
@@ -30,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 3️⃣ Кнопка каталога
   const katalogBtn = document.querySelector(".kataloq");
   const catalogModal = document.getElementById("catalogModal");
   const iconBox = katalogBtn?.querySelector(".iconBox");
@@ -44,5 +41,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 4️⃣ Кнопка "Admin Panel" — просто <a>, переход работает сразу, JS не нужен
 });

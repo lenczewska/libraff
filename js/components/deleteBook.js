@@ -1,4 +1,4 @@
-import {deleteBook} from "../service/httpMethods.js"; // функция удаления из сервиса
+import {deleteBook} from "../service/httpMethods.js"; 
 import loadBooks from "../utils/admin.js";
 
 async function deleteBookFunction(id) {
@@ -15,7 +15,7 @@ async function deleteBookFunction(id) {
   if (!result.isConfirmed) return;
 
   try {
-    await deleteBook(id); // <-- вызываем сервис
+    await deleteBook(id); 
     const Toast = Swal.mixin({
       toast: true,
       position: "top-end",
@@ -42,7 +42,6 @@ async function deleteBookFunction(id) {
   }
 }
 
-// Делаем глобально доступной для HTML
-window.deleteBookFunction = deleteBookFunction; // ✅ делаем глобальной
+window.deleteBookFunction = deleteBookFunction; 
 
 export default deleteBookFunction;

@@ -21,9 +21,25 @@ function getFavorites() {
   localStorage.setItem(FAVORITES_KEY, JSON.stringify(favs));
 }
 
+function updateWishlistCounter() {
+  const counter = document.getElementById('wishlistCounter');
+  if (counter) {
+    const count = getFavorites().length;
+    if (count > 0) {
+      counter.textContent = count;
+      counter.classList.remove('hidden');
+    } else {
+      counter.classList.add('hidden');
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', updateWishlistCounter);
+
 export {
   getFavorites,
   isFavorite,
   addFavorite,
-  removeFavorite
+  removeFavorite,
+  updateWishlistCounter
 }

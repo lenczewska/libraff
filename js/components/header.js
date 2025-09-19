@@ -3,8 +3,8 @@ function getHeader() {
   <header class="first flex items-center mb-[40px] mt-[40px] ml-[20px] mr-[20px] gap-[35px]">
     <div class="left flex justify-between gap-[40px]">
       <div class="logo-box w-[175px] h-[40px]">
-        <a href="./index.html">
-          <img src="./img/logo_b1x3-5c.png" alt="" class="w-full h-full">
+        <a href="../index.html">
+          <img src="../img/logo_b1x3-5c.png" alt="" class="w-full h-full">
         </a>
       </div>
 
@@ -60,10 +60,11 @@ function getHeader() {
         </div>
       </div>
 
-        <div id="wishList">
-            <a href="./pages/wishList.html"><i class="fa-regular fa-heart"></i></a>
-
-            <span class="tooltip">Seçilmiş məhsulların siyaxısına baxın</span>
+        <div id="wishList" class="relative">
+            <a href="./pages/wishList.html" class="relative">
+                <i class="fa-regular fa-heart text-[24px] cursor-pointer"></i>
+                <span id="wishlistCounter" class="absolute top-[10px] right- bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+            </a>
         </div>
         <div id="bascketBox" class="cursor-pointer">
             <i class="fa-solid fa-basket-shopping text-[24px]"></i>

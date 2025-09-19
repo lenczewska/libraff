@@ -1,87 +1,89 @@
-  <header class="first flex items-center mb-[40px] mt-[40px] ml-[20px] mr-[20px] gap-[35px] ">
-        <div class="left flex justify-between gap-[40px]">
-            <div class="logo-box w-[175px] h-[40px]">
-                <a href="./index.html"> <img src="./img/logo_b1x3-5c.png" alt="" class="w-full h-full">
-                </a>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitab Təfərrüatları - Libraff</title>
+    <link rel="icon" href="../img/icon (1).png" type="image/png">
+    <link rel="stylesheet" href="../src/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .loaderr {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #ef4444;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="headerContainer"></div>
+
+    <main id="mainSec">
+    </main>
+
+    <footer>
+        <div class="inf mt-20px p-[20px] flex gap-[150px]">
+            <div class="acc flex flex-col gap-[10px] text-20px">Hesabım
+                <p class="text-[15px]">Daxil ol</p>
+                <p class="text-[15px]">Qeydiyyatdan keç</p>
             </div>
 
-            <!-- Каталог -->
-            <div
-                class="kataloq relative z-50 w-[140px] h-[40px] rounded-[20px] bg-red-500 text-white flex items-center justify-center text-center cursor-pointer">
-                <div class="iconBox w-[25px] flex flex-wrap mr-[5px]">
-                    <i class="fa-regular fa-square text-white mt-[2px] text-[8px] font-bold text-2xl"></i>
-                    <i class="fa-regular fa-square text-white mt-[2px] text-[8px] font-bold text-2xl"></i>
-                    <i class="fa-regular fa-square text-white mt-[2px] text-[8px] font-bold text-2xl"></i>
-                    <i class="fa-regular fa-square text-white mt-[2px] text-[8px] font-bold text-2xl"></i>
-                </div>
-                <div class="closeIcon hidden text-white font-bold text-2xl text-center mr-[15px] mb-[3px]">&times;</div>
-                Kataloq
+            <div class="acc flex flex-col gap-[10px] text-20px">Şirkət
+                <p class="text-[15px]">Haqqımızda</p>
+                <p class="text-[15px]">Əlaqə</p>
+                <p class="text-[15px]">Vakansiya</p>
+                <p class="text-[15px]">Sayt Xəritəsi</p>
             </div>
 
-            <!-- Модалка -->
-            <div id="catalogModal" style="background-color: rgba(128,128,128,0.5);"
-                class="fixed inset-0  items-center justify-center z-40 hidden">
-                <div class="bg-white rounded-[20px] p-6 w-[1220px] h-[450px] mt-[100px] ml-[20px] mr-[20px] relative">
-                    <h2 class="text-xl font-bold mb-4">Каталог</h2>
-                    <p>Здесь будет содержимое каталога...</p>
-                </div>
+            <div class="acc flex flex-col gap-[10px] text-20px">Müştəri Xidməti
+                <p class="text-[15px]">Dəyişdirilmə və qaytarılma</p>
+                <p class="text-[15px]">Ödəniş və çatdırılma</p>
+                <p class="text-[15px]">Sifarişiniz haqqında</p>
+                <p class="text-[15px]">Seçilmişlər</p>
             </div>
-
+            <div class="acc flex flex-col gap-[10px] text-20px">Əlaqə
+                <p class="text-[15px]">Bakı, Badamdar qəs., Mikayıl Müşfiq küç. 1c (Badamdar Estates)</p>
+                <p class="text-[15px]">+994-50-290-44-96</p>
+                <p class="text-[15px]">B.e.-B. 9.00 - 18.00</p>
+                <p class="text-[15px]"><a href="#">online@libraff.az</a></p>
+                <p class="text-[15px]"><a href="#">Xəritədə bax</a></p>
+            </div>
         </div>
+        <p class="huquq ml-[20px]">© 2017 - 2025 Libraff.</p>
+    </footer>
 
-        <input id="inpBox" class="w-[500px] h-[40px] border rounded-[20px] p-[10px] " type="search"
-            placeholder="Növbəti kitabınızı axtarın">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module" src="../js/middleware/headerProvider.js"></script>
+    <script type="module" src="../js/details.js"></script>
+</body>
 
-        <div class="right flex justify-center items-center gap-[20px]">
-            <div id="langBox">
-                <select name="lang" id="lang">AZ</select>
-            </div>
-            <div id="openModal"
-                class="cursor-pointer w-[140px] h-[40px]  rounded-[20px] flex justify-center items-center gap-[10px] bg-white text-[18px] px-[20px] py-[10px] relative">
-                <i class="fa-regular fa-circle-user text-[20px]"></i> Hesabim <i class="fa-solid fa-angle-down"></i>
-            </div>
-
-            <div id="login-dropdown"
-                class="hidden absolute top-[100%] left-0 w-[350px] border rounded-[20px] shadow-[0_4px_10px_rgba(0,0,0,0.3)] z-[1000] ">
-                <div
-                    class="top-section bg-white p-[20px] flex flex-col justify-around gap-[20px] rounded-tr-[20px] rounded-tl-[20px] ">
-                    <a class="text-black text-[16px] font-medium" href="#"> Sifarişlər</a>
-                    <a class="text-black text-[16px] font-medium" href="#">Qaytarma sorguları</a>
-                    <a class="text-black text-[16px] font-medium" href="#">Seçilmişlər</a>
-                </div>
-                <div class="bottom-section bg-white p-[20px] text-gray-400 rounded-br-[20px] rounded-bl-[20px]">
-                    <label class="block mb-[5px]">Sifarişi izləmək</label>
-                    <input class="w-[100%] p-[8px] mb-[10px] border rounded-[5px] " type="text"
-                        placeholder="Sifariş nömrəsi / E-poçt">
-                    <div class="buttons flex justify-between gap-[10px]">
-                        <button
-                            class="btn-login px-[10px] py-[12px] border rounded-[20px] cursor-pointer font-bold text-white bg-black "><a href="./admin.html">Admin Panel</a></button>
-                        <button
-                            class="btn-register px-[10px] py-[12px] border rounded-[20px] cursor-pointer font-bold text-white bg-red-700 ">Qeydiyyat</button>
-                    </div>
-                </div>
-            </div>
-
-            <div id="wishList">
-                <i class="fa-regular fa-heart"></i>
-                <span class="tooltip ">Seçilmiş məhsulların siyaxısına baxın</span>
-            </div>
-            <div id="bascketBox" class="cursor-pointer"><i class="fa-solid fa-basket-shopping text-[24px]"></i></div>
-        </div>
-    </header>
-
-    <header class="second flex justify-between ml-[20px] mr-[20px] mb-[20px]">
-        <div class="left text-black flex gap-[20px]">
-            <p><a href="#">Bestseller – İyul</a></p>
-            <p><a href="#">Endirimlər</a></p>
-            <p><a href="#">Müəlliflər</a></p>
-            <p><a href="#">Klassiklər</a></p>
-        </div>
-        <div class="right text-[#727272] flex gap-[20px]">
-            <p><a href="#">Ödəniş və çatdırılma</a></p>
-            <p><a href="#">Loyallıq Kartı</a></p>
-            <p><a href="#">FAQ</a></p>
-            <p><a href="#">Əlaqə</a></p>
-        </div>
-    </header>
-    
+</html>

@@ -61,7 +61,7 @@ async function editBook(id, obj) {
         loadBooks();
     } catch (error) {
         Swal.fire({
-            title: "Xəta baş verdi! (console bax)",
+            title: "Xəta baş verdi!",
             icon: "error",
             draggable: true
         });

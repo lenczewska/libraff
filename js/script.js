@@ -3,6 +3,8 @@ const books = document.getElementById('dayBooks');
 const BASE_URL = `https://lenczewska-libraff-az-data.onrender.com/books`;
 let data;
 
+import { addFavorite, removeFavorite, isFavorite, updateWishlistCounter } from './utils/favUtils.js';
+
 
 
 
@@ -30,22 +32,37 @@ const res = await fetch("https://lenczewska-libraff-az-data.onrender.com/books")
 
     booksContainer.innerHTML = "";
     filteredData.forEach(item => {
+      const isInWishlist = isFavorite(item.id);
+      const wishlistClass = isInWishlist ? 'text-red-500' : 'text-gray-400 hover:text-red-500';
+      
       const card = `
-<div class="w-[240px] p-[20px] hover:shadow-xl rounded-[20px] transition-all duration-300">
+<div class="w-[240px] p-[20px] hover:shadow-xl rounded-[20px] transition-all duration-300 group bg-white relative">
   <div class="group relative w-[200px] h-[250px] bg-gray-100 rounded-[20px] mb-[20px] overflow-hidden flex items-center justify-center">
-    <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover p-[20px]">
+    <a href="./pages/details.html?id=${item.id}" class="block w-full h-full">
+      <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover p-[20px] hover:scale-105 transition-transform duration-300">
+    </a>
+    <button 
+      onclick="toggleWishlist(this, '${item.id}')" 
+      class="absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-200 ${wishlistClass}"
+      data-id="${item.id}"
+      title="${isInWishlist ? 'Seçilmişlərdən çıxar' : 'Seçilmişlərə əlavə et'}"
+    >
+      <i class="fa-heart ${isInWishlist ? 'fa-solid' : 'fa-regular'} text-sm"></i>
+    </button>
   </div>
-  <div>
+  <a href="./pages/details.html?id=${item.id}" class="block hover:text-red-600 transition-colors duration-200">
     <p class="mt-2 text-black font-bold w-full">${item.title}</p>
-    <div class="flex items-center gap-[10px]">
-      <p class="text-red-600 font-bold">${item.price} azn</p>
-      ${item.sale ? `<del class="text-gray-400 text-sm">${item.sale} azn</del>` : ""}
-    </div>
+  </a>
+  <div class="flex items-center gap-[10px]">
+    <p class="text-red-600 font-bold">${item.price} azn</p>
+    ${item.sale ? `<del class="text-gray-400 text-sm">${item.sale} azn</del>` : ""}
   </div>
 </div>
 `;
       booksContainer.innerHTML += card;
     });
+    
+    updateWishlistCounter();
   }
 
   function setLanguage(lang) {
@@ -70,6 +87,28 @@ const res = await fetch("https://lenczewska-libraff-az-data.onrender.com/books")
     });
   });
 
+  window.toggleWishlist = function(btn, bookId) {
+    const isInWishlist = isFavorite(bookId);
+    const heartIcon = btn.querySelector('i');
+    
+    if (isInWishlist) {
+      removeFavorite(bookId);
+      btn.classList.remove('text-red-500');
+      btn.classList.add('text-gray-400', 'hover:text-red-500');
+      heartIcon.classList.remove('fa-solid');
+      heartIcon.classList.add('fa-regular');
+      btn.title = 'Seçilmişlərə əlavə et';
+    } else {
+      addFavorite(bookId);
+      btn.classList.remove('text-gray-400', 'hover:text-red-500');
+      btn.classList.add('text-red-500');
+      heartIcon.classList.remove('fa-regular');
+      heartIcon.classList.add('fa-solid');
+      btn.title = 'Seçilmişlərdən çıxar';
+    }
+    
+    updateWishlistCounter();
+  };
 
 });
 

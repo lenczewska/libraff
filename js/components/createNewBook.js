@@ -32,13 +32,13 @@ async function createNewBook(obj) {
         });
         Toast.fire({
             icon: "success",
-            title: "Kitab uğurla yaradıldı!"
+            title: "Yeni kitab elavə edildi!"
         });
         loadBooks();
     }
     catch (error) {
         Swal.fire({
-            title: "Xəta baş verdi! (console bax)",
+            title: "Xəta baş verdi!",
             icon: "error",
             draggable: true
         });
