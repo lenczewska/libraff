@@ -1,5 +1,5 @@
 import getAllCategories from "../service/getAllCategories.js"; 
-import createNewBook from "./createNewBooks.js"; 
+import createNewBook from "./createNewBook.js"; 
 import editBook from "./editBook.js";
 import deleteBook from "./deleteBook.js";
 

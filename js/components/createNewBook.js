@@ -1,5 +1,5 @@
 import { postBook } from "../service/httpMethods.js"
-import { getBookData} from "../components/bookFormData.js"
+import { getBookData} from "./bookFormData.js"
 import loadBooks from "../utils/admin.js"
 
 async function createNewBook() {
