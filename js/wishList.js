@@ -20,7 +20,7 @@ async function initPage() {
 
         if (favoriteBooks.length > 0) {
             html += `<section class="px-[30px] mt-8 grid grid-cols-6 gap-10"> 
-        ${favoriteBooks.map(bookCardTemplate).join("")}
+        ${favoriteBooks.map(card).join("")}
         </section>`;
         }
         else {
