@@ -36,7 +36,7 @@
                                     class="cursor-pointer rounded-xl px-3 py-2 text-sm ring-1 ring-slate-300 text-slate-600 hover:bg-white transition-all duration-200">
                                     <span class="flex items-center gap-1.5"><i class="fa-regular fa-pen-to-square"></i>Dəyiş</span>
                                 </button>
-                                <button onclick='deleteBookFunc(${book.id})'
+                                <button onclick='deleteBookFunction(${book.id})'
                                     class="cursor-pointer rounded-xl px-3 py-2 text-sm ring-1 ring-red-400/40 text-[#CC0000] bg-white hover:bg-[#CC0000] hover:text-white hover:ring-white transition-all duration-200">
                                     <span class="flex items-center gap-1.5"><i class="fa-regular fa-trash-can"></i>Sil</span>
                                 </button>
