@@ -3,10 +3,10 @@ import getBookById  from "../service/getElementByID.js"
 import loadBooks from "../utils/admin.js"
 import { getBookData } from "./bookFormData.js"
 
-async function editBook(id) {
-    console.log("Edit is called!");
-    const obj = await getBookById(id);
-    console.log("Obj:", obj);
+async function editBook(id, obj) {
+    console.log("Edit is called!", obj);
+    // const obj = await getBookById(id);
+    // console.log("Obj:", obj);
 
     if (!obj) {
         Swal.fire({

@@ -91,6 +91,8 @@ async function openBookModal(mode = "create", book = null) {
 
     form.book_name.value = book.book_name || "";
     form.book_img.value = book.book_img || "";
+    form.category.value = book.category || "";
+    form.altCategory.value = book.altCategory || "";
     form.price.value = book.price || "";
     form.genre.value = book.genre || "";
     form.author.value = book.author || "";
