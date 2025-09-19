@@ -2,9 +2,7 @@ import { postBook } from "../service/httpMethods.js"
 import { getBookData} from "./bookFormData.js"
 import loadBooks from "../utils/admin.js"
 
-async function createNewBook() {
-    const obj = getBookData();
-
+async function createNewBook(obj) {
     if (
         !obj.book_name || !obj.book_img || !obj.price || !obj.genre || !obj.author ||
         !obj.category || !obj.altCategory || !obj.publisher ||

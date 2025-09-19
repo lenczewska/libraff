@@ -27,12 +27,16 @@
 
     <div id="dynamicModal"></div>
 
-    <button id="create-book"
-      class="rounded-xl px-6 py-3 text-white font-semibold shadow-lg bg-gradient-to-r from-yellow-600 to-amber-700 hover:from-yellow-700 hover:to-amber-800 transition-all duration-300 cursor-pointer">
+    <button id="create-book" 
+      onclick="openBookModal('create')"
+      class="rounded-xl px-6 py-3 text-white font-semibold shadow-lg 
+      bg-gradient-to-r from-yellow-600 to-amber-700 hover:from-yellow-700 
+      hover:to-amber-800 transition-all duration-300 cursor-pointer">
       <span class="inline-flex items-center gap-2">
         <i class="fa-solid fa-plus"></i> Yeni kitab əlavə et
       </span>
     </button>
+
   </header>
 
   <section id="booksTable"
