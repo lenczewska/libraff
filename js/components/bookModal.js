@@ -5,14 +5,12 @@ import deleteBook from "./deleteBook.js";
 
 let formObj = {};
 
-// Function to update formObj when a field changes
 function getValue(event) {
   const { name, value } = event.target;
   formObj[name] = value;
   console.log("Form object updated:", formObj);
 }
 
-// Replace formObj completely
 function setFormObj(obj) {
   formObj = obj;
   console.log("Form object updated:", formObj);
@@ -44,14 +42,27 @@ async function openBookModal(mode = "create", book = null) {
             <input type="number" name="price" placeholder="Qiymət" class="border p-2 rounded">
             <input type="text" name="genre" placeholder="Janr" class="border p-2 rounded">
             <input type="text" name="author" placeholder="Müəllif" class="border p-2 rounded col-span-2">
-            <select name="category" id="categorySelect" class="border p-2 rounded">
-              <option selected disabled>Kateqoriya seç</option>
+            <select name="category" id="categorySelect" class="border p-2 rounded" required>
+              <option value="" disabled selected>Kateqoriya seç</option>
+              <option value="Roman">Roman</option>
+              <option value="Elmi">Elmi</option>
+              <option value="Tarix">Tarix</option>
+              <option value="Uşaq kitabları">Uşaq kitabları</option>
+              <option value="Poeziya">Poeziya</option>
             </select>
             <select name="altCategory" id="altCategorySelect" class="border p-2 rounded">
-              <option selected disabled>Alt kateqoriya seç</option>
+              <option value="" disabled selected>Alt kateqoriya seç</option>
             </select>
             <input type="text" name="publisher" placeholder="Nəşriyyat" class="border p-2 rounded">
-            <input type="text" name="language" placeholder="Dil" class="border p-2 rounded">
+            <select name="language" class="border p-2 rounded" required>
+              <option value="" disabled selected>Dil seç</option>
+              <option value="Azərbaycan dili">Azərbaycan dili</option>
+              <option value="İngilis dili">İngilis dili</option>
+              <option value="Türk dili">Türk dili</option>
+              <option value="Rus dili">Rus dili</option>
+              <option value="Fars dili">Fars dili</option>
+              <option value="Ərəb dili">Ərəb dili</option>
+            </select>
             <textarea name="description" placeholder="Təsvir" class="border p-2 rounded col-span-2"></textarea>
             <input type="number" name="pageCount" placeholder="Səhifə sayı" class="border p-2 rounded">
             <input type="number" name="stockCount" placeholder="Stok sayı" class="border p-2 rounded">
@@ -64,63 +75,130 @@ async function openBookModal(mode = "create", book = null) {
     </div>
   `;
 
-  // Close modal
   document.getElementById("closeModal").addEventListener("click", () => container.innerHTML = "");
 
-  // Fill categories
   const categorySelect = document.getElementById("categorySelect");
   const altCategorySelect = document.getElementById("altCategorySelect");
-  categorySelect.innerHTML = `<option selected disabled>Kateqoriya seç</option>
-    ${categories.map(cat => `<option value="${cat.title}">${cat.title}</option>`).join("")}`;
+
+  const subcategories = {
+    "Roman": ["Klassik", "Müasir", "Fantastik", "Detektiv", "Romantik", "Tarixi"],
+    "Elmi": ["Fizika", "Kimya", "Biologiya", "Riyaziyyat", "Tibb", "Texnologiya"],
+    "Tarix": ["Qədim tarix", "Orta əsrlər", "Yeni dövr", "Müasir tarix", "Azərbaycan tarixi", "Dünya tarixi"],
+    "Uşaq kitabları": ["Nağıllar", "Tərbiyəvi", "Təhsil", "Rəsm kitabları", "Məcərə", "Elm-populyar"],
+    "Poeziya": ["Klassik", "Müasir", "Xalq", "Lirik", "Epik", "Satirik"]
+  };
+
+  if (categories && categories.length > 0) {
+    categories.forEach(cat => {
+      const existingOption = Array.from(categorySelect.options).find(option => option.value === cat.title);
+      if (!existingOption && cat.title) {
+        const option = document.createElement("option");
+        option.value = cat.title;
+        option.textContent = cat.title;
+        categorySelect.appendChild(option);
+      }
+    });
+  }
 
   categorySelect.addEventListener("change", (e) => {
-    const selectedCat = categories.find(c => c.title === e.target.value);
-    altCategorySelect.innerHTML = `<option selected disabled>Alt kateqoriya seç</option>` +
-      (selectedCat && Array.isArray(selectedCat.altCateg)
-        ? selectedCat.altCateg.map(sub => `<option value="${sub}">${sub}</option>`).join("") : "");
-    getValue(e); // Update formObj.category
+    const selectedValue = e.target.value;
+    
+    altCategorySelect.innerHTML = `<option value="" disabled selected>Alt kateqoriya seç</option>`;
+    
+    if (subcategories[selectedValue]) {
+      subcategories[selectedValue].forEach(subcat => {
+        const option = document.createElement("option");
+        option.value = subcat;
+        option.textContent = subcat;
+        altCategorySelect.appendChild(option);
+      });
+    }
+    
+    const selectedCat = categories.find(c => c.title === selectedValue);
+    if (selectedCat && Array.isArray(selectedCat.altCateg)) {
+      selectedCat.altCateg.forEach(subcat => {
+        const existingOption = Array.from(altCategorySelect.options).find(option => option.value === subcat);
+        if (!existingOption && subcat) {
+          const option = document.createElement("option");
+          option.value = subcat;
+          option.textContent = subcat;
+          altCategorySelect.appendChild(option);
+        }
+      });
+    }
+    
+    getValue(e);
   });
 
-  // Attach change listeners to all inputs, selects, and textarea
-  const formElements = container.querySelectorAll("#BookForm input, #BookForm select, #BookForm textarea");
-  formElements.forEach(el => el.addEventListener("change", getValue));
+  altCategorySelect.addEventListener("change", getValue);
 
-  // If editing, fill values
+  const formElements = container.querySelectorAll("#BookForm input, #BookForm select, #BookForm textarea");
+  formElements.forEach(el => {
+    if (el.id !== "categorySelect" && el.id !== "altCategorySelect") {
+      el.addEventListener("change", getValue);
+    }
+  });
+
   if (mode === "edit" && book) {
     const form = document.getElementById("BookForm");
 
-    form.book_name.value = book.book_name || "";
-    form.book_img.value = book.book_img || "";
-    form.category.value = book.category || "";
-    form.altCategory.value = book.altCategory || "";
-    form.price.value = book.price || "";
-    form.genre.value = book.genre || "";
-    form.author.value = book.author || "";
-    form.publisher.value = book.publisher || "";
-    form.language.value = Array.isArray(book.language) ? book.language.join(" ") : (book.language || "");
-    form.description.value = book.description || "";
-    form.pageCount.value = book.pageCount || "";
-    form.stockCount.value = book.stockCount || "";
+    if (form.book_name) form.book_name.value = book.book_name || "";
+    if (form.book_img) form.book_img.value = book.book_img || "";
+    if (form.price) form.price.value = book.price || "";
+    if (form.genre) form.genre.value = book.genre || "";
+    if (form.author) form.author.value = book.author || "";
+    if (form.publisher) form.publisher.value = book.publisher || "";
+    if (form.description) form.description.value = book.description || "";
+    if (form.pageCount) form.pageCount.value = book.pageCount || "";
+    if (form.stockCount) form.stockCount.value = book.stockCount || "";
+
+    const languageSelect = form.language;
+    if (languageSelect && book.language) {
+      const languageValue = Array.isArray(book.language) ? book.language[0] : book.language;
+      languageSelect.value = languageValue;
+    }
 
     if (book.category) {
       categorySelect.value = book.category;
-      const selectedCat = categories.find(c => c.title === book.category);
-      altCategorySelect.innerHTML = `<option selected disabled>Alt kateqoriya seç</option>` +
-        (selectedCat && Array.isArray(selectedCat.altCateg)
-          ? selectedCat.altCateg.map(sub => `<option value="${sub}">${sub}</option>`).join("")
-          : "");
-      if (book.altCategory) altCategorySelect.value = book.altCategory;
+      
+      const changeEvent = new Event('change');
+      categorySelect.dispatchEvent(changeEvent);
+      
+      setTimeout(() => {
+        if (book.altCategory) {
+          altCategorySelect.value = book.altCategory;
+        }
+      }, 10);
     }
 
     setFormObj({
       ...book,
-      language: Array.isArray(book.language) ? book.language : (book.language ? [book.language] : []),
-      sale: book.price - (book.price * 0.2)
+      language: Array.isArray(book.language) ? book.language[0] : book.language,
+      sale: book.price ? book.price - (book.price * 0.2) : 0
     });
   }
 
   const submitBtn = document.getElementById("submitBookBtn");
-  submitBtn.addEventListener("click", () => {
+  submitBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    
+    const requiredFields = container.querySelectorAll("#BookForm [required]");
+    let isValid = true;
+    
+    requiredFields.forEach(field => {
+      if (!field.value.trim()) {
+        field.style.borderColor = "#ef4444";
+        isValid = false;
+      } else {
+        field.style.borderColor = "#d1d5db";
+      }
+    });
+    
+    if (!isValid) {
+      alert("Zəhmət olmasa bütün tələb olunan sahələri doldurun!");
+      return;
+    }
+    
     if (mode === "edit") {
       editBook(book.id, formObj);
     } else {
